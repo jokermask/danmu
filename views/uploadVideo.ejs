@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>爱弹幕-投稿</title>
+    <link rel='stylesheet' href='/css/base.css' />
+    <link rel='stylesheet' href='/css/upload.css' />
+    <script src="/lib/jquery-2.0.3.min.js"></script>
+    <script src="/lib/mod.js"></script>
+    <script src="/modules/upload.js"></script>
+</head>
+<body>
+<header>
+    <h1 class="logo">爱弹幕</h1>
+    <div class="logoText"><b class="logo-arrow"></b><p>上传你的视频，让社区更精彩</p></div>
+    <ul class="userMenu">
+        <li id="return-home">返回</li>
+    </ul>
+</header>
+<section class="main-body">
+    <div class="main-content">
+        <div class="upload-label">
+            上传你的视频文件
+            <a href="javascript:;" class="a-upload">
+                <input type="file" name="av_file" id="av_file">选择文件
+            </a>
+        </div>
+        <p id="fileName" class="fileInfo"></p>
+        <p id="fileSize" class="fileInfo"></p>
+        <p id="fileType" class="fileInfo"></p>
+        <div>
+            <div id="progressWrap">
+                <div id="uploadProgress"></div>
+            </div>
+            <p id="progressNumber">0%</p>
+            <input class="upload-btn" type="button" value="开始上传" />
+        </div>
+        <form enctype="multipart/form-data" method="post" action="/upload/videoInfo">
+            <input id="path" name="path" style="display: none;" type="text">
+            <label class="video-name">视频名称<input id="video-tittle" name="av_name" type="text"></label>
+            <label class="video-type">
+                 选择分类
+                <input type="radio" checked="checked" name="video_type" value="cartoon">动漫
+                <input type="radio" name="video_type" value="entertain">娱乐
+                <input type="radio" name="video_type" value="tech">科技
+                <input type="radio" name="video_type" value="music">音乐
+            </label>
+            <div class="upload-label">
+                上传封面
+                <a href="javascript:;" class="a-upload">
+                    <input type="file" name="cover">选择文件
+                </a>
+            </div>
+            <div>
+                <p>视频简介</p>
+                <textarea id="video-brief" name="brief" rows="3" cols="30" placeholder="请介绍一下自己的视频吧"></textarea>
+            </div>
+            <button type="button" id="fin-btn">提交</button>
+            <p class="upload-err"></p>
+        </form>
+    </div>
+</section>
+</body>
+<script>
+    var upload = require('modules/upload') ;
+</script>
+</html>

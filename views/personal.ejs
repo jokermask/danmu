@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>爱弹幕-个人主页</title>
+    <link rel='stylesheet' href='/css/base.css' />
+    <link rel='stylesheet' href='/css/personal.css' />
+    <link rel='stylesheet' href='/css/sweetalert.css' />
+    <script src="/lib/jquery-2.0.3.min.js"></script>
+    <script src="/lib/mod.js"></script>
+    <script src="/lib/sweetalert.min.js"></script>
+    <script src="/modules/personal.js"></script>
+</head>
+    <body>
+    <header>
+        <h1 class="logo">爱弹幕</h1>
+        <div class="logoText"><b class="logo-arrow"></b><p>加入我们，一个可以即时聊天的弹幕网站</p></div>
+        <ul class="userMenu">
+            <li id="upload-video">投稿</li>
+            <li id="return">返回</li>
+        </ul>
+    </header>
+    <section class="main-body">
+        <div class="main-content clearfix">
+            <div id="collection-list">
+                <p class="my-collection">我的收藏</p>
+                <% for(var i=0; i<videos.length; i++) {%>
+                <div class="single-video" data-type="<%= videos[i].type %>">
+                    <div class="video-info">
+                        <h3 class="video-tittle"><%= videos[i].video_tittle %></h3>
+                        <p class="author" data-author="<%= videos[i].author_username %>"><%= videos[i].author_nickname %></p>
+                    </div>
+                    <div class="brief hide"><%= videos[i].brief %></div>
+                    <img class="cover" src="<%= videos[i].cover %>"/>
+                    <img class="play-btn" src="images/play-btn.png" data-id="<%= videos[i]._id %>">
+                    <p class="pro-number"><%= videos[i].pro_count%><b class="pro-icon"></b></p>
+                </div>
+                <% } %>
+            </div>
+            <div id="user-box">
+                <b id="user-edit"></b>
+                <img class="user-icon" src="<%= user.icon_path %>">
+                <label class="icon-area hide">
+                    <a href="javascript:;" class="a-upload">
+                        <input id="upload-icon" name="upload-icon" type="file">选择图片
+                    </a>
+                    <p id="file-name"></p>
+                </label>
+                <p id="nickname"><%= user.nickname%></p>
+                <p id="personal-brief"><%= user.personal_brief%></p>
+                <label class="brief-area hide">
+                    <textarea id="upload-brief" name="brief" rows="4" cols="25"></textarea>
+                    <div id="upload-detail-btn">保存</div>
+                </label>
+                <div class="personal-count clearfix">
+                    <p id="follower-count">粉丝数: <%= user.follower_count%></p>
+                    <p id="following-count">关注数: <%= user.following_count%></p>
+                </div>
+            </div>
+        </div>
+    </section>
+    </body>
+    <script>
+        require('modules/personal') ;
+    </script>
+</html>

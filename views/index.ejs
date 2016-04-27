@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>爱弹幕-主页</title>
+    <link rel='stylesheet' href='/css/base.css' />
+    <link rel='stylesheet' href='/css/index.css' />
+    <link rel='stylesheet' href='/css/sweetalert.css' />
+    <script src="/lib/jquery-2.0.3.min.js"></script>
+    <script src="/lib/mod.js"></script>
+    <script src="/lib/sweetalert.min.js"></script>
+    <script src="/modules/index.js"></script>
+</head>
+    <body>
+        <header>
+            <h1 class="logo">爱弹幕</h1>
+            <div class="logoText"><b class="logo-arrow"></b><p>加入我们，一个可以即时聊天的弹幕网站</p></div>
+            <ul class="userMenu">
+                <li class="user-figure <%= isShow %>">
+                    <p><img class="user-icon" src="<%= iconpath %>"></p>
+                    <p class="nickname"><%= nickname %></p>
+                </li>
+                <li id="on-off"><%= buttontype %></li>
+                <li id="upload-video">投稿</li>
+            </ul>
+        </header>
+        <div class="login hide">
+            <div class="login-mask"></div>
+            <div class="login-form">
+                <img id="close-btn" src="images/close-btn.png"/>
+                <form>
+                    <input id="username" type="text" placeholder="账号">
+                    <input id="password" type="password" placeholder="密码">
+                    <button type="button" id="login-button">登录</button>
+                    <p class="reg-btn">还没有账号？注册一个</p>
+                    <p class="login-error"></p>
+                </form>
+            </div>
+        </div>
+        <section class="main-body">
+            <div class="main-content">
+                <div class="filter">
+                    <p>分类</p>
+                    <a id="all" class="selected">全部</a>
+                    <a id="cartoon">动漫</a>
+                    <a id="entertain">娱乐</a>
+                    <a id="tech">科技</a>
+                    <a id="music">音乐</a>
+                </div>
+                <div class="video-list">
+                    <% for(var i=0; i<videos.length; i++) {%>
+                    <div class="single-video" data-type="<%= videos[i].type %>">
+                        <div class="video-info">
+                            <h3 class="video-tittle"><%= videos[i].video_tittle %></h3>
+                            <p class="author" data-author="<%= videos[i].author_username %>"><%= videos[i].author_nickname %></p>
+                        </div>
+                        <div class="brief hide"><%= videos[i].brief %></div>
+                        <img class="cover" src="<%= videos[i].cover %>"/>
+                        <img class="play-btn" src="images/play-btn.png" data-id="<%= videos[i]._id %>">
+                        <p class="pro-number"><%= videos[i].pro_count%><b class="pro-icon"></b></p>
+                    </div>
+                    <% } %>
+                </div>
+            </div>
+        </section>
+    </body>
+    <script>
+        require('modules/index') ;
+    </script>
+</html>

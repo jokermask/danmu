@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>爱弹幕-他人空间</title>
+    <link rel='stylesheet' href='/css/base.css' />
+    <link rel='stylesheet' href='/css/personal.css' />
+    <script src="/lib/jquery-2.0.3.min.js"></script>
+    <script src="/lib/mod.js"></script>
+    <script src="/modules/other.js"></script>
+</head>
+<body>
+<header>
+    <h1 class="logo">爱弹幕</h1>
+    <div class="logoText"><b class="logo-arrow"></b><p>加入我们，一个可以即时聊天的弹幕网站</p></div>
+    <ul class="userMenu">
+        <li class="user-figure <%= isShow %>">
+            <p><img class="user-icon" src="<%= iconpath %>"></p>
+            <p class="nickname"><%= nickname %></p>
+        </li>
+        <li id="return">返回</li>
+    </ul>
+</header>
+<section class="main-body">
+    <div class="main-content clearfix">
+        <div id="collection-list">
+            <p class="my-collection">他的作品</p>
+            <% for(var i=0; i<videos.length; i++) {%>
+            <div class="single-video" data-type="<%= videos[i].type %>">
+                <div class="video-info">
+                    <h3 class="video-tittle"><%= videos[i].video_tittle %></h3>
+                    <p class="author" data-author="<%= videos[i].author_username %>"><%= videos[i].author_nickname %></p>
+                </div>
+                <div class="brief hide"><%= videos[i].brief %></div>
+                <img class="cover" src="<%= videos[i].cover %>"/>
+                <img class="play-btn" src="images/play-btn.png" data-id="<%= videos[i]._id %>">
+                <p class="pro-number"><%= videos[i].pro_count%><b class="pro-icon"></b></p>
+            </div>
+            <% } %>
+        </div>
+        <div id="user-box">
+            <img class="user-icon" src="<%= user.icon_path %>">
+            <p id="nickname"><%= user.nickname%></p>
+            <p id="personal-brief"><%= user.personal_brief%></p>
+            <div class="personal-count clearfix">
+                <p id="follower-count">粉丝数: <%= user.follower_count%></p>
+                <p id="following-count">关注数: <%= user.following_count%></p>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+<script>
+    require('modules/other') ;
+</script>
+</html>

@@ -1,0 +1,38 @@
+@base_blue: #0b97c4;
+@main_bg_color: #EEEFF3 ;
+
+
+.main-body{
+  min-height: 400px;
+}
+
+.main-content{
+  width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.filter{
+  padding: 20px 0;
+  font-size: .8rem;
+  p{
+    display: inline-block;
+    padding-right: 10px;
+    margin-right: 10px;
+    border-right:1px solid rgba(0,0,0,.2);
+  }
+  a{
+    display: inline-block;
+    margin: 2px 0;
+    padding: 5px 15px;
+    border-radius: 10px;
+    box-shadow: 0 1px 1px grey;
+    background-color: white;
+    color: grey;
+    cursor: pointer;
+  }
+  .selected{
+    color: @base_blue ;
+  }
+}
+

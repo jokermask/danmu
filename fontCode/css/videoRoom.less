@@ -1,0 +1,265 @@
+@progress-wrap-color: rgb(90, 91, 94) ;
+@pale-blue:#1399C7 ;
+@vol-icon-on: url('images/vol-on.png') ;
+@vol-icon-off: url('images/vol-off.png') ;
+@danmu-icon-on: url('images/danmu-on.png') ;
+@danmu-icon-off: url('images/danmu-off.png') ;
+@danmu-icon-setting: url('images/danmu-setting.png');
+@video-like: url('images/like.png') ;
+@video-unlike: url('images/unlike.png') ;
+
+.video-container{
+  position: fixed;
+  top: 50%;
+  left: 45%;
+  margin-top: -200px;
+  margin-left: -400px;
+  z-index: 10;
+}
+
+#loading-icon{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  margin-left: -10px;
+  margin-top: -10px;
+}
+
+#video{
+  height: 100%;
+  width: 100%;
+}
+#videoControls{
+  position: relative;
+  width: 798px;
+  margin: 0 auto;
+  text-align: left;
+  letter-spacing: -6px;
+  border: solid 1px gray ;
+}
+#playBtn{
+  display: inline-block;
+  height: 20px;
+  width: 40px;
+  border: 0;
+  vertical-align: top;
+  .playing{
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    background-color: white;
+  }
+  .stop{
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-top: 7px solid transparent;
+    border-left: 14px solid white;
+    border-bottom: 7px solid transparent;
+  }
+}
+#progressWrap{
+  display: inline-block;
+  height: 15px;
+  margin: 2.5px;
+  border-radius: 7.5px;
+  width: 650px;
+  vertical-align: top;
+  background-color: @progress-wrap-color;
+  overflow: hidden;
+}
+
+#playProgress{
+  background-color: @pale-blue;
+  border-radius: 7.5px;
+  width: 0px;
+  height: 15px;
+}
+
+#volumeControl{
+  display: inline-block;
+  height: 20px;
+  width: 80px;
+
+  .volume-icon{
+    display: inline-block;
+    height: 15px;
+    width: 15px;
+    margin: 2.5px 0;
+    cursor: pointer;
+  }
+  .volume-on{
+    background: @vol-icon-on no-repeat center center;
+    background-size: contain;
+  }
+  .volume-off{
+    background: @vol-icon-off no-repeat center center;
+    background-size: contain;
+  }
+
+  .volProgress{
+    position: relative;
+    display: inline-block;
+    height: 4px;
+    width: 60px;
+    margin: 8px 2px;
+    border-radius: 2px;
+    background-color: @progress-wrap-color;
+    .volBar{
+      position: absolute;
+      top: -6px;
+      height: 15px;
+      width: 6px;
+      border-radius: 3px;
+      background-color: @pale-blue;
+    }
+  }
+}
+
+#danmuSwitch{
+  display: inline-block;
+  height: 15px;
+  width: 15px;
+  margin: 2.5px 0;
+  cursor: pointer;
+}
+.danmu-on{
+  background: @danmu-icon-on no-repeat center center;
+  background-size: contain;
+}
+.danmu-off{
+  background: @danmu-icon-off no-repeat center center;
+  background-size: contain;
+}
+
+.sendLayer{
+  position: relative;
+  height: 22px;
+  margin-bottom: 10px;
+  line-height: 22px;
+  .danmuInput{
+    height: 20px;
+    width: 650px;
+    margin: 0 5px;
+    border-radius: 2px;
+    border: solid 1px gray ;
+    vertical-align: top;
+  }
+  .sendDanmu{
+    padding: 0 3px;
+    vertical-align: top;
+    height: 22px;
+    background-color: @pale-blue;
+    border: none ;
+    color: white ;
+    border-radius: 3px;
+    font-weight: 600;
+  }
+}
+
+#danmu-setting{
+  position: absolute;
+  top: -156px ;
+  left: 20px ;
+  height: auto;
+  width: 100px;
+  padding: 10px 0 ;
+  border-radius: 5px;
+  box-shadow: 1px 1px .5px gray;
+  background-color: white;
+  letter-spacing: normal;
+  font-size: .7rem;
+  text-align: center;
+  .setting-close{
+    position: absolute;
+    top: 3px ;
+    right: 3px ;
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+  }
+}
+
+.danmu-setting-icon{
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  margin: 3.5px 0 3.5px 20px ;
+  background: @danmu-icon-setting no-repeat center center;
+  background-size: contain;
+  cursor: pointer;
+}
+
+#markVideo{
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-left: 10px ;
+  cursor: pointer;
+}
+
+.like{
+  background: @video-like  no-repeat center center;
+  background-size: contain;
+}
+.unlike{
+  background: @video-unlike  no-repeat center center;
+  background-size: contain;
+}
+//弹幕
+.single-danmu{
+  display: inline-block;
+  white-space: nowrap;
+}
+
+#danmuContainer{
+  background-color: black;
+}
+
+.messages-box{
+  position: fixed;
+  left: 45%;
+  top: 50% ;
+  width: 200px;
+  height: 508px ;
+  margin-left: 400px;
+  margin-top: -200px;
+  border: solid 1px gray ;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  font-size: .8rem;
+}
+
+.messages-box-tittle{
+  background-color: @pale-blue;
+  height: 30px;
+  line-height: 30px;
+  color: white;
+  opacity: .8;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  font-weight: 700;
+}
+
+.messages-box-content{
+  height: 477px;
+  overflow-y: scroll;
+}
+
+.messages-list{
+  text-align: left;
+  word-break: break-all;
+  li{
+    width: 100%;
+    list-style: none;
+    padding: 2px 0;
+  }
+}
+
+.messages-author{
+  color: @pale-blue;
+}
+

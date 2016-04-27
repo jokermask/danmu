@@ -1,0 +1,60 @@
+@base_blue: #0b97c4;
+@block_bg: white ;
+@font-color :rgb(108, 107, 107) ;
+
+.main-body{
+  padding: 40px 0;
+  background: url('/images/bg3.jpg') no-repeat center center;
+  background-size: cover;
+}
+
+.register-form{
+  width: 450px;
+  margin: 0 auto;
+  border-radius: 10px;
+  border: solid 1px black ;
+  box-shadow: 0 0 5px #d2d2d3;
+  background-color: @block_bg;
+  overflow: hidden;
+  font-size: 18px;
+}
+
+.reg-item{
+  display: block;
+  margin: 10px 0;
+  color: @font-color ;
+  input{
+    height: 30px;
+    width: 200px;
+    margin-left: 10px;
+    font-weight: 600;
+    text-indent: 5px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: solid 1px gray ;
+    border-radius: 3px;
+    color: gray ;
+  }
+}
+
+#register-btn{
+  display: block;
+  height: 20px;
+  width: 150px;
+  margin: 0 auto;
+  margin-bottom: 60px;
+  border: 0;
+  padding: 10px 15px;
+  color: white ;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  background-color: @base_blue;
+  box-shadow: 0 0 5px #d2d2d3;
+}
+
+.inputWarn{
+  color: red;
+}

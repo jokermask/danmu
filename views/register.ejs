@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>爱弹幕-注册</title>
+    <link rel='stylesheet' href='/css/base.css' />
+    <link rel='stylesheet' href='/css/register.css' />
+    <script src="/lib/jquery-2.0.3.min.js"></script>
+    <script src="/lib/mod.js"></script>
+    <script src="/modules/register.js"></script>
+</head>
+<header>
+    <h1 class="logo">爱弹幕</h1>
+    <div class="logoText"><b class="logo-arrow"></b><p>欢迎加入我们，打开异次元的大门</p></div>
+    <ul class="userMenu">
+        <li id="return-home">返回</li>
+    </ul>
+</header>
+<body>
+<section class="main-body">
+    <form class="register-form">
+        <label class="reg-item">账号<input type="text" name="username" id="username" placeholder="6~16位可由字母数字下划线组成"></label>
+        <label class="reg-item">密码<input type="password" name="password" id="password" placeholder="6~16位"></label>
+        <label class="reg-item">确认密码<input type="password" name="password" id="passwordConfirm" placeholder="请确认您的密码" ></label>
+        <label class="reg-item">昵称<input type="text" name="nickname" id="nickname" placeholder="请输入您的昵称" ></label>
+        <label class="reg-item">邮箱<input type="text" name="email" id="email" placeholder="请输入您的邮箱"></label>
+        <p class="inputWarn hide"></p>
+        <p id="register-btn">注册</p>
+    </form>
+</section>
+</body>
+<script>
+    require('modules/register') ;
+</script>
+</html>

@@ -1,0 +1,103 @@
+@base_blue: #0b97c4;
+@edit_icon: url('/images/edit.png') ;
+
+.main-content{
+  width: 1000px;
+  margin: 0 auto;
+}
+
+#collection-list{
+  float: left;
+  width: 650px;
+  margin: 30px 0;
+  border: solid 1px gray;
+  border-radius: 5px ;
+  background-color: white;
+}
+
+.my-collection{
+  height: 40px;
+  line-height: 40px;
+  background-color: @base_blue;
+  color: white;
+  text-align: left;
+  text-indent: 25px;
+  opacity: .5;
+}
+
+#user-box{
+  float: left;
+  position: relative;
+  width: 250px;
+  margin: 30px 0;
+  margin-left: 30px;
+  background-color: white;
+  border: solid 1px gray;
+  border-radius: 5px;
+  transition: height 1s;
+  .user-icon{
+    display: block;
+    margin: 0 auto;
+    margin-top: 10px;
+  }
+  #nickname{
+    color: @base_blue ;
+    opacity: .8;
+  }
+  #user-edit{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background: @edit_icon no-repeat center center;
+    background-size: contain;
+    cursor: pointer;
+  }
+  #personal-brief{
+    padding: 10px;
+    font-size: .8rem;
+    color: gray ;
+  }
+}
+
+#upload-detail-btn{
+  padding: 0 3px;
+  vertical-align: top;
+  height: 22px;
+  width: 100px;
+  margin: 0 auto;
+  padding: 3px;
+  font-size: .8rem;
+  background-color: @base_blue;
+  border: none ;
+  color: white ;
+  border-radius: 3px;
+  font-weight: 600;
+}
+
+#upload-brief{
+  resize: none;
+  color: grey;
+  padding: 3px;
+}
+
+#file-name{
+  font-size: .6rem;
+  color: grey;
+  word-break: break-all;
+}
+
+.personal-count{
+  width: 150px;
+  margin: 10px auto;
+  font-size: .8rem;
+  color: gray;
+}
+#follower-count{
+  float: left;
+}
+#following-count{
+  float: right;
+}

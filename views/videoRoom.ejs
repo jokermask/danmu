@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>爱弹幕-播放室</title>
+    <link rel='stylesheet' href='/css/base.css' />
+    <link rel='stylesheet' href='/css/videoRoom.css' />
+    <link rel='stylesheet' href='/css/sweetalert.css' />
+    <script src="/lib/jquery-2.0.3.min.js"></script>
+    <script src="/lib/mod.js"></script>
+    <script src="/lib/sweetalert.min.js"></script>
+    <script src="/lib/drag.js"></script>
+    <script src="/lib/danmu.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/modules/client.js"></script>
+</head>
+<body>
+    <header>
+        <h1 class="logo">爱弹幕</h1>
+        <div class="logoText"><b class="logo-arrow"></b><p>如果喜欢，就给视频点个赞吧！~</p></div>
+        <ul class="userMenu">
+            <li class="user-figure <%= isShow %>">
+                <p><img class="user-icon" src="<%= iconpath %>"></p>
+                <p class="nickname"><%= nickname %></p>
+            </li>
+            <li id="on-off"><%= buttontype %></li>
+            <li id="return-home">返回</li>
+        </ul>
+    </header>
+    <div class="login hide">
+        <div class="login-mask"></div>
+        <div class="login-form">
+            <img id="close-btn" src="images/close-btn.png"/>
+            <form>
+                <input id="username" type="text" placeholder="账号">
+                <input id="password" type="password" placeholder="密码">
+                <button type="button" id="login-button">登录</button>
+                <p class="reg-btn">还没有账号？注册一个</p>
+                <p class="login-error"></p>
+            </form>
+        </div>
+    </div>
+    <div class="video-layout">
+        <div class="video-container">
+            <div id="danmuContainer">
+                <img id="loading-icon" src="/images/loading.gif">
+                <video id="video" data-id="<%= video._id %>" data-author="<%= video.author_username %>" preload>
+                    <source src="<%= video.path %>" type='video/mp4'>
+                </video>
+            </div>
+            <div id="videoControls">
+                <button id="playBtn" title="Play"><span class="stop"></span></button>
+                <div id="progressWrap">
+                    <div id="playProgress"></div>
+                </div>
+                <div id="volumeControl">
+                    <b class="volume-icon volume-on"></b>
+                    <div class="volProgress">
+                        <p class="volBar"></p>
+                    </div>
+                </div>
+                <p id="danmuSwitch" class="danmu-on" title="弹幕开关"></p>
+                <div class="sendLayer">
+                    <div id="danmu-setting" class="hide">
+                        <img class="setting-close" src="images/danmu-setting-close.png" alt="">
+                        <p>弹幕颜色</p>
+                        <input id="danmuColor" value="#FFF" type="color">
+                        <p>弹幕大小</p>
+                        <select id="fontSelect">
+                            <option value="0">小</option>
+                            <option value="1" selected="selected">中</option>
+                            <option value="2">大</option>
+                        </select>
+                        <p>弹幕样式</p>
+                        <select id="typeSelect">
+                            <option value="top">顶端弹幕</option>
+                            <option value="normal" selected="selected">正常弹幕</option>
+                            <option value="bottom">底端弹幕</option>
+                        </select>
+                    </div>
+                    <b class="danmu-setting-icon" title="设置弹幕"></b>
+                    <input class="danmuInput" type="text">
+                    <input class="sendDanmu" type="button" value="发送弹幕">
+                    <b id="markVideo" class="<%= isLike%>" title="收藏或取消"></b>
+                </div>
+            </div>
+        </div>
+        <div class="messages-box">
+            <p class="messages-box-tittle">即时信息</p>
+            <div class="messages-box-content">
+                <ul class="messages-list"></ul>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    require('modules/client') ;
+</script>
+</html>
