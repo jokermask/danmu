@@ -34,7 +34,7 @@ router.get('/', function(req, res, next) {
       }).fail(console.error);
     }
 });
-//promise seal
+//利用promise解决深层嵌套的问题
 function findVideo(req){
   var deferred = Q.defer();
   Video.findVideo(req.query,function(err,video) {
