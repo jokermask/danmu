@@ -55,8 +55,19 @@ define('modules/personal', function(require, exports, module) {
     });
     $("#upload-detail-btn").click(function(){
       var fd = new FormData();
-      fd.append("upload-icon", document.getElementById('upload-icon').files[0]);
-      fd.append("personal_brief", $("#upload-brief").val());
+      var icon_file = document.getElementById('upload-icon').files[0] ;
+      var brief = $("#upload-brief").val();
+  
+      if(icon_file) {
+        fd.append("upload-icon", document.getElementById('upload-icon').files[0]);
+      }else{
+        fd.append("oldIcon", $(".user-icon").attr('src'));
+      }
+      if(!brief){
+        brief = $("#personal-brief").text() ;
+      }
+      fd.append("personal_brief", brief);
+  
       var xhr = new XMLHttpRequest();
       xhr.open("POST", "/upload/uploadDetail");
       xhr.onload = function(oEvent) {

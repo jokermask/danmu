@@ -64,10 +64,11 @@ router.post('/videoInfo',uploadImg.single('cover'),function(req,res,next){
 }) ;
 
 router.post('/uploadDetail',uploadImg.single('upload-icon'), function(req, res, next) {
+  var file_path = req.body.oldIcon? req.body.oldIcon : removePublic(req.file.path);
   var data = {
     username: req.session.username,
-    path:removePublic(req.file.path),
-    brief:req.body.personal_brief||"这个人很懒，没留下什么。。。"
+    path:file_path,
+    brief:req.body.personal_brief
   } ;
   User.updateDetail(data,function(result){
     res.send(data) ;

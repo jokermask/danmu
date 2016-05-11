@@ -4,57 +4,84 @@ var Video = require('../model/video') ;
 var Danmu = require('../model/danmu') ;
 var Mark = require('../model/mark') ;
 var User = require('../model/user') ;
+var Q = require('q') ;
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
 
-  Video.findVideo(req.query,function(err,video){
     var data = {} ;
-    if(err){
-      return res.send(err) ;
+    if(req.session.username){
+      data.buttontype = "注销" ;
+      data.nickname = req.session.nickname ;
+      data.isShow = "" ;
+      Q.all([
+        findVideo(req),findRelation(req),findIconPath(req)
+      ]).spread(function(video,islike,path){
+        data.video = video ;
+        data.isLike = islike ;
+        data.iconpath = path ;
+        return res.render('videoRoom',data) ;
+      });
     }else{
-      data.video = video ;
-
-      if(req.session.username){
-        data.buttontype = "注销" ;
-        data.nickname = req.session.nickname ;
-        data.isShow = "" ;
-        var relationQuery = {
-          video_id: req.query._id,
-          username: req.session.username
-        };
-        Mark.findRelation(relationQuery,function(err,relation){
-          if(err){
-             console.log(err) ;
-          }else{
-            if(relation){
-              data.isLike = "unlike"
-            }else{
-              data.isLike = "like"
-            }
-
-            User.getIconPath(req.session.username,function(err,path){
-              if(err){
-                console.log(err) ;
-              }else{
-                data.iconpath = path ;
-                return res.render('videoRoom',data) ;
-              }
-            });
-
-          }
-        });
-      }else{
+      findVideo(req).then(function(video){
+        data.video = video ;
         data.buttontype = "登录" ;
         data.nickname = "" ;
         data.isLike = "like" ;
         data.iconpath = "" ;
         data.isShow = "hide" ;
         return res.render('videoRoom',data) ;
-      }
+      }).fail(console.error);
+    }
+});
+//promise seal
+function findVideo(req){
+  var deferred = Q.defer();
+  Video.findVideo(req.query,function(err,video) {
+    var data = {};
+    if (err) {
+      deferred.reject(err);
+    } else {
+      data = video;
+      deferred.resolve(data);
     }
   }) ;
-});
+  return deferred.promise;
+}
+
+function findRelation(req){
+  var relationQuery = {
+    video_id: req.query._id,
+    username: req.session.username
+  }
+  var deferred = Q.defer();
+  var data ;
+  Mark.findRelation(relationQuery,function(err,relation){
+    if(err){
+      deferred.reject(err) ;
+    }else {
+      data = relation? "unlike" : "like" ;
+      deferred.resolve(data) ;
+    }
+  });
+  return deferred.promise;
+}
+
+
+function findIconPath(req){
+  var deferred = Q.defer();
+  var data ;
+  User.getIconPath(req.session.username,function(err,path){
+    if(err){
+      deferred.reject(err) ;
+    }else{
+      data = path ;
+      deferred.resolve(data) ;
+    }
+  });
+  return deferred.promise;
+}
+
 //获取弹幕列表
 router.get('/danmuList',function(req,res,next){
 
